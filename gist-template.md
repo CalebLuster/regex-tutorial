@@ -28,17 +28,18 @@ What we can get from this code snippet is that it is an simple email expression.
 
 ### Anchors
 
-    ^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$
+    /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
 
 In this code example we can see the anchors, which are the "^" at the start and the "$" at the end.
 
 In this code snippet we are looking for something that starts with 
 
-    ^\w+@[a-zA-Z_]+?\
+   /^([a-z0-9_\.-]+)
 
 If this is found then what follows alos has to end with the other half. The period in the expression kind of seperates the two anchors in this given example. Notice how the second half follows with a period as normal javascript would.
 
-    .[a-zA-Z]{2,3}$
+    .([a-z\.]{2,6})$/
+
 
 If the code does not start or end with these anchors then the email will not match.
 ### Quantifiers
@@ -49,9 +50,9 @@ A quantifier is kind of exactaly what it sounds it would be. It decides how many
 
 So in this code we have the abc+ which will match our string becuase ours is 
 
-    ^\w+@[a-zA-Z_]+?\
+    ([a-z0-9_\.-]+)
 
-If you notice it says "a-z" which menas this will match.
+If you notice it says "a-z" which means this will match.
 
 ### OR Operator
 
@@ -67,6 +68,10 @@ This is a very simplified example but it is essientaly saying these requirments 
 
 Character classes make sure that a letter follows the @ symbol in an email and not a special character or number. It is stated after the @ symbol when trying to match an email.
 
+In our code it is the       
+        
+    \d
+
 ### Flags
 
 No flags are being used in this example
@@ -75,21 +80,21 @@ No flags are being used in this example
 
 This is just essentially checking each section and varifying it matchs before moving on to the next one. The first group that appears is
 
-    ^\w+@[a-zA-Z_]+?\
+     ([a-z0-9_\.-]+)
 
 and once that matches it checks the next group in our regex which is 
 
-    .[a-zA-Z]{2,3}$
+  ([\da-z\.-]+)\
 
 The guidelines must be matching to move on the the next section or group of characters.
 
 ### Bracket Expressions
 
-    ^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$
+      /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
 
 In our example we can see that there are, in fact, brackets in our snippet!
 
-These are simply SETTING the guidlines for group. In the first expression we have [a-zA-Z_] this means any letter a-z, A_Z, or an underscore.
+These are simply SETTING the guidlines for group. In the first expression we have [a-z0-9_\.-] this means any letter a-z, 0-9, an underscore, a period(Periods are escaped characters so it needs the back slash.), or a hyphen.
 
 Pretty cool stuff!
 
